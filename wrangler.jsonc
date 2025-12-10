@@ -1,21 +1,31 @@
-/**
- * For more details on how to configure Wrangler, refer to:
- * https://developers.cloudflare.com/workers/wrangler/configuration/
- */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "simple-antiques",
-	"compatibility_date": "2025-10-11",
+	"compatibility_date": "2025-09-28",
 	"pages_build_output_dir": "./public",
-
-	"observability": {
-		"enabled": true
-	},
+	"r2_buckets": [
+		{
+			"binding": "antiques_storage",
+			"bucket_name": "simple-antiques",
+			"preview_bucket_name": "simple-antiques"
+			//"binding": "r2_test",
+			//"bucket_name": "r2-test",
+			//"preview_bucket_name": "r2-test",
+			//"binding": "image_assets",
+			//"bucket_name": "image-assets",
+			//"preview_bucket_name": "image-assets"
+		}
+	],
 	"d1_databases": [
 		{
-			"binding": "gallery_db",
-			"database_name": "ej-antiques",
-			"database_id": "0fe8ddbd-6707-4717-bed6-971f1f79ef69"
+			"binding": "antiques_db",
+			"database_name": "simple-antiques",
+			"database_id": "2deb992b-56db-402c-8408-c7877f072f8a"
+		}
+	],
+	"kv_namespaces": [
+		{
+		"binding": "ej_admin",
+		"id": "878c3390c1b54f31a2fb953d61c04568"
 		}
 	]
 
