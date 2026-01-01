@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Manage Products</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    button {
+      margin-right: 0.5rem;
+    }
+    #productForm {
+      margin-top: 2rem;
+    }
+    #status {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .form-meta-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: end;
+    }
+    .form-meta-row label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+    }
+    textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body data-type="products">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="/ej-antiques/ej-logo-2.jpg" alt="EJ's Antiques logo" class="logo-image" />
+          <span class="logo-text">Admin</span>
+        </div>
+        <div id="nav-placeholder"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>🚲 Products</h2>
+      <button id="addNewBtn">➕ Add New Product</button>
+
+      <table id="productsTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Slug</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Published</th>
+            <th>Sold</th>
+            <th>Quantity</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>✍️ Create / Edit Product</h2>
+      <form id="productForm">
+        <input type="hidden" name="id" />
+
+        <fieldset class="form-meta-row">
+          <label for="title">Title:
+            <input type="text" name="title" id="title" required />
+          </label>
+          <label for="price">Price (£):
+            <input type="number" name="price" id="price" required />
+          </label>
+          <label for="category">Category:
+            <input type="text" name="category" id="category" />
+          </label>
+          <label for="slug">Slug:
+            <input type="text" name="slug" id="slug" readonly />
+          </label>
+          <label for="quantity">Quantity:
+            <input type="number" name="quantity" id="quantity" min="0" />
+          </label>
+          <label for="status">Status:
+            <select name="status" id="status">
+              <option value="active">Active</option>
+              <option value="archived">Archived</option>
+              <option value="draft">Draft</option>
+            </select>
+          </label>
+          <label for="is_published">Is Published:
+            <select name="is_published" id="is_published">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+          <label for="is_sold">Is Sold:
+            <select name="is_sold" id="is_sold">
+              <option value="false" selected>No</option>
+              <option value="true">Yes</option>
+            </select>
+          </label>
+          <label for="sold_at">Sold At:
+            <input type="datetime-local" name="sold_at" id="sold_at" />
+          </label>
+          <label for="created_at">Created At:
+            <input type="text" name="created_at" id="created_at" readonly />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-meta-row">
+          <label for="image">Image URL:
+            <input type="text" name="image" id="image" />
+          </label>
+          <label for="images">Additional Images (comma-separated):
+            <input type="text" name="images" id="images" />
+          </label>
+        </fieldset>
+
+        <label for="description">Teaser:</label>
+        <textarea name="description" id="description" rows="3" required></textarea>
+
+        <label for="longDescription">Product Details:</label>
+        <textarea name="longDescription" id="longDescription" rows="6"></textarea>
+
+        <label for="background">Background:</label>
+        <textarea name="background" id="background" rows="6"></textarea>
+
+        <button type="submit">Save Product</button>
+      </form>
+
+      <div id="status"></div>
+    </section>
+  </main>
+
+  <script src="/js/admin-products.js"></script>
+  <script src="/js/inject-nav.js"></script>
+  <script src="/js/inject-footer.js"></script>
+</body>
+</html>
